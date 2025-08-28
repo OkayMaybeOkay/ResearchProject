@@ -1,0 +1,25 @@
+import numpy as np
+
+"Creates a bit string of chosen length, 50% chance for 0 or 1"
+def bit_string_create(length):
+    bit_string = np.random.choice([0, 1], length, p = [0.5, 0.5])
+    return bit_string
+
+"Corrupts a given string with a probability of a bit flip"
+def bit_flip_corruptor(string, probability):
+
+    new_string = np.array([
+    ], dtype=int)
+
+    for i in range(string.shape[0]):
+        current_bit = string[i]
+        non_current_bit = (current_bit + 1) % 2
+        new_bit = np.random.choice([current_bit, non_current_bit], 1, p=[1 - probability, probability])
+        new_string = np.append(new_string, new_bit)
+
+    return(new_string)
+
+bob = bit_string_create(10)
+print(bob)
+evil_bob = bit_flip_corruptor(bob, 0.5)
+print(evil_bob)
