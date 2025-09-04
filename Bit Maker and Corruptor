@@ -1,12 +1,12 @@
 import numpy as np
 
 "Creates a bit string of chosen length, 50% chance for 0 or 1"
-def bit_string_create(length):
+def create_bit_array(length):
     bit_string = np.random.choice([0, 1], length, p = [0.5, 0.5])
     return bit_string
 
-"Corrupts a given string with a probability of a bit flip"
-def bit_flip_corruptor(string, probability):
+"Corrupts a given string with a probability of a bit flip, returns a list, which will be inputted into the decoder"
+def bf_corrupter_return_list(string, probability):
 
     new_string = np.array([
     ], dtype=int)
@@ -17,9 +17,32 @@ def bit_flip_corruptor(string, probability):
         new_bit = np.random.choice([current_bit, non_current_bit], 1, p=[1 - probability, probability])
         new_string = np.append(new_string, new_bit)
 
-    return(new_string)
+    return_list = new_string.tolist()
 
-bob = bit_string_create(10)
-print(bob)
-evil_bob = bit_flip_corruptor(bob, 0.5)
+    return(return_list)
+
+"Corrupts a given string with a probability of an erasure, returns a list, which will be inputted into the decoder"
+def e_corruptor_return_list(string, probability):
+
+    new_string = np.full(string.shape[0], 2, dtype = int)
+
+    for i in range(string.shape[0]):
+        current_bit = string[i]
+        new_bit = np.random.choice([current_bit, 2], 1, p=[1 - probability, probability])
+        new_string[i] = new_bit[0]
+
+    return_list = new_string.tolist()
+
+    for i in range(string.shape[0]):
+        if new_string[i] == 2:
+            return_list[i] = "x"
+
+    return (return_list)
+
+"Example of bit creation and corruption"
+bob = create_bit_array(6)
+print("Bob: " + str(bob))
+evil_bob = bf_corrupter_return_list(bob, 0.1)
 print(evil_bob)
+eviler_bob = e_corruptor_return_list(bob, 0.5)
+print(eviler_bob)
