@@ -26,12 +26,10 @@ e_matrix = np.full(
 
 "Now it's time to make the function that can decode keywords"
 
-def erasure_decode(y0, y1, y2, y3, y4, y5):
+def erasure_decode(input_list):
 
     """The corrupted code word"""
-    m_sub_i = np.array([
-        y0, y1, y2, y3, y4, y5
-    ], dtype = object)
+    m_sub_i = np.array(input_list, dtype = object)
 
     "This for will be for repeating the process of decoding a keyword"
     for iterations in range(max_iterations):
@@ -89,4 +87,4 @@ def erasure_decode(y0, y1, y2, y3, y4, y5):
         if (iterations + 1) == max_iterations:
             print("Max iterations have been reached: " + str(max_iterations))
 
-erasure_decode(1,0,1,"x","x","x")
+erasure_decode([0, 0, 0, 0, 0, "x"])
