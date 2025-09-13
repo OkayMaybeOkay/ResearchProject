@@ -8,26 +8,29 @@ the max is for max attempts, and the E matrix is the matrix that will, for each 
 of each check node. This means E must equal H in terms of size.
 """
 
-"H Matrix"
-h_matrix = np.array([
-    [1, 1, 0, 1, 0, 0],
-    [0, 1, 1, 0, 1, 0],
-    [1, 0, 0, 0, 1, 1],
-    [0, 0, 1, 1, 0, 1]
-])
 
-"Max iterations"
-max_iterations = 10
-
-"The E Matrix"
-e_matrix = np.full(
-    h_matrix.shape, 2
-)
 
 "Now we make the function"
 
 def bit_flip_decode(input_list):
-    """Corrupted Codeword"""
+
+    "H Matrix"
+    h_matrix = np.array([
+        [1, 1, 0, 1, 0, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+        [0, 1, 1, 0, 0, 1, 0],
+        [1, 1, 1, 0, 0, 0, 1]
+    ])
+
+    "Max iterations"
+    max_iterations = 1000
+
+    "The E Matrix"
+    e_matrix = np.full(
+        h_matrix.shape, 2
+    )
+
+    "Corrupted Codeword"
     m_sub_i = np.array(input_list)
 
     "This will repeat the process"
@@ -84,12 +87,13 @@ def bit_flip_decode(input_list):
 
         "Now we do this until there's no 1's"
         if 1 not in e_matrix:
-            print("Here's the Code Word: " + str(m_sub_i))
-            print("It took " + str(iterations + 1) + " iterations")
+            #print("Here's the Code Word: " + str(m_sub_i))
+            #print("It took " + str(iterations + 1) + " iterations")
+            return (str(m_sub_i))
             break
 
         "If there is still unknowns in the keyword and the max iterations have been reached, we say it reached the max"
         if (iterations + 1) == max_iterations:
-            print("Max iterations have been reached: " + str(max_iterations))
-
-bit_flip_decode([0, 0, 0, 0, 0, 1])
+            #print("Max iterations have been reached: " + str(max_iterations))
+            #print("Decoding failed")
+            return(("Decoding failed (" + str(max_iterations) + " Iterations)"))
