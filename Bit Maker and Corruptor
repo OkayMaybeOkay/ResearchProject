@@ -39,10 +39,3 @@ def e_corruptor_return_list(string, probability):
 
     return (return_list)
 
-"Example of bit creation and corruption"
-bob = create_bit_array(6)
-print("Bob: " + str(bob))
-evil_bob = bf_corrupter_return_list(bob, 0.1)
-print(evil_bob)
-eviler_bob = e_corruptor_return_list(bob, 0.5)
-print(eviler_bob)
