@@ -1,0 +1,23 @@
+import numpy as np
+from Projects.BitCreationCorruption import create_bit_array
+
+def codeword_create():
+
+    h_matrix = np.array([
+        [1, 0, 0, 1, 1, 0, 1],
+        [0, 1, 0, 1, 0, 1, 1],
+        [0, 0, 1, 0, 1, 1, 1]
+    ])
+
+    u_bit_string = create_bit_array(h_matrix.shape[0])
+
+    code_word = np.dot(u_bit_string, h_matrix)
+
+    for i in range(code_word.shape[0]):
+        if code_word[i] > 1:
+            code_word[i] = code_word[i] % 2
+
+    return code_word
+
+
+
