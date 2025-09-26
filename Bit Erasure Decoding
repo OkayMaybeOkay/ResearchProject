@@ -8,7 +8,13 @@ the max is for max attempts, and the E matrix is the matrix that will, for each 
 of each check node. This means E must equal H in terms of size.
 """
 
-
+"""
+Description: Takes in a corrupted keyword (1 by 7) and decodes it using erasure decoding
+Depends on: numpy
+Parameters: input_list (list data type, 1 by 7)
+Returns: m_sub_i (array data type, 1 by 7),
+         "Decoding Failed: ... Iterations" (string data type, ... is your Max Iterations number)
+"""
 
 "Now it's time to make the function that can decode keywords"
 
@@ -83,7 +89,7 @@ def erasure_decode(input_list):
         "Now we check if there are any x's in the keyword, and if not, we have the keyword"
         if 'x' not in m_sub_i:
             #print("It took " + str(iterations + 1) + " iteration(s) to find the code word: " + str(m_sub_i))
-            return(str(m_sub_i))
+            return m_sub_i
             break
 
         "If there is still unknowns in the keyword and the max iterations have been reached, we say it reached the max"
