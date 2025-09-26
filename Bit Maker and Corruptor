@@ -1,11 +1,24 @@
 import numpy as np
 
-"Creates a bit string of chosen length, 50% chance for 0 or 1"
+
+"""
+Description: Creates a bit string of chosen length, 50% chance for 0 or 1
+Depends on: numpy
+Parameters: length (int data type)
+Returns: bit_string (array data type, 1 by length)
+"""
+
 def create_bit_array(length):
     bit_string = np.random.choice([0, 1], length, p = [0.5, 0.5])
     return bit_string
 
-"Corrupts a given string with a probability of a bit flip, returns a list, which will be inputted into the decoder"
+"""
+Description: Corrupts a given string with a probability for a bit flip
+Depends on: numpy
+Parameters: string (string data type), probability (float data type, 0 - 1)
+Returns: return_list (array data type, 1 by string's length)
+"""
+
 def bf_corrupter_return_list(string, probability):
 
     new_string = np.array([
@@ -21,8 +34,12 @@ def bf_corrupter_return_list(string, probability):
 
     return(return_list)
 
-"Corrupts a given string with a probability of an erasure, returns a list, which will be inputted into the decoder"
-def e_corruptor_return_list(string, probability):
+"""
+Description: Corrupts a given string with a probability for an erasure
+Parameters: string (string data type), probability (float data type, 0 - 1)
+Returns: return_list (array data type, 1 by string's length)
+"""
+def e_corrupter_return_list(string, probability):
 
     new_string = np.full(string.shape[0], 2, dtype = int)
 
