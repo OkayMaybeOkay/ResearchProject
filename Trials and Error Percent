@@ -68,23 +68,29 @@ def sample_error_data(probability, choose_method):
             e_decoded_keyword = erasure_decode(e_corrupted_keyword)
 
             e_frame_errors = 0
+            e_bit_errors = 0
 
-            if ("Decoding failed" in e_decoded_keyword):
+            for j in range(keyword.size):
+                if (keyword[j] != e_decoded_keyword[j]):
+                    e_bit_errors += 1
+
+            if (e_bit_errors != 0):
                 e_frame_errors += 1
-                print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n")
+                print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
             total_trials += 1
             total_frame_errors += e_frame_errors
+            total_bit_errors += e_bit_errors
 
             print("Trial " + str(total_trials))
             print("Keyword: " + str(keyword))
             print("Corrupted Keyword: " + str(e_corrupted_keyword_array))
             print("Decoded Keyword: " + str(e_decoded_keyword))
-            print("Frame Errors: " + str(e_frame_errors) + "\n")
+            print("Frame Errors: " + str(e_frame_errors))
+            print("Bit Errors: " + str(e_bit_errors) + "\n")
 
             if (total_frame_errors == 100):
                 break
-
 
 
 
