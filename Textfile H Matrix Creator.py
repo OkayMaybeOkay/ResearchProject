@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 Description: Takes in a file name, reads it, stores each line into matrix (each line is also a matrix),
              and formats the file into a string which using eval, turns it into real code
