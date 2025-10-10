@@ -1,5 +1,12 @@
 from Projects.TrialsAndErrorPercent import sample_error_data
 
+"""
+Description: Utilizes Trials and Error Percent to get the average of 10 FERs and BERs experiments
+Depends on: TrialsAndErrorPercent (sample_error_data)
+Parameters: None, not a function
+Returns: Nothing, not a function
+"""
+
 count_FER = 0
 total_FER = 0
 count_BER = 0
