@@ -25,7 +25,8 @@ def erasure_decode(input_list):
         [1, 1, 0, 1, 0, 0, 0],
         [1, 0, 1, 0, 1, 0, 0],
         [0, 1, 1, 0, 0, 1, 0],
-        [1, 1, 1, 0, 0, 0, 1]
+        [1, 1, 1, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1, 1]
     ], dtype=object)
 
     "Max iterations"
@@ -90,10 +91,10 @@ def erasure_decode(input_list):
         if 'x' not in m_sub_i:
             #print("It took " + str(iterations + 1) + " iteration(s) to find the code word: " + str(m_sub_i))
             return m_sub_i
-            break
 
         "If there is still unknowns in the keyword and the max iterations have been reached, we say it reached the max"
         if (iterations + 1) == max_iterations:
             #print("Max iterations have been reached: " + str(max_iterations))
             #print("Decoding failed")
-            return(("Decoding failed (" + str(max_iterations) + " Iterations)"))
+            return m_sub_i
+
