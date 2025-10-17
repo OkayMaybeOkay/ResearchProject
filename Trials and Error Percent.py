@@ -41,18 +41,19 @@ def sample_error_data(probability, choose_method):
 
             if (bf_bit_errors != 0):
                 bf_frame_errors += 1
-                print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                """print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                """
 
             total_trials += 1
             total_frame_errors += bf_frame_errors
             total_bit_errors += bf_bit_errors
 
-            print("Trial " + str(total_trials))
+            """print("Trial " + str(total_trials))
             print("Keyword: " + str(keyword))
             print("Corrupted Keyword: " + str(bf_corrupted_keyword_array))
             print("Decoded Keyword: " + str(bf_decoded_keyword))
             print("Frame Errors: " + str(bf_frame_errors))
-            print("Bit Errors: " + str(bf_bit_errors) + "\n")
+            print("Bit Errors: " + str(bf_bit_errors) + "\n")"""
 
 
             if (total_frame_errors == 100):
@@ -76,26 +77,30 @@ def sample_error_data(probability, choose_method):
 
             if (e_bit_errors != 0):
                 e_frame_errors += 1
-                print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                """print("v ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                """
 
             total_trials += 1
             total_frame_errors += e_frame_errors
             total_bit_errors += e_bit_errors
 
-            print("Trial " + str(total_trials))
+            """print("Trial " + str(total_trials))
             print("Keyword: " + str(keyword))
             print("Corrupted Keyword: " + str(e_corrupted_keyword_array))
             print("Decoded Keyword: " + str(e_decoded_keyword))
             print("Frame Errors: " + str(e_frame_errors))
-            print("Bit Errors: " + str(e_bit_errors) + "\n")
+            print("Bit Errors: " + str(e_bit_errors) + "\n")"""
 
             if (total_frame_errors == 100):
                 break
 
 
 
-    print("Total Trials: " + str(total_trials))
+    """print("Total Trials: " + str(total_trials))
     print("Total Frame Errors: " + str(total_frame_errors))
-    print("Total Bit Errors: " + str(total_bit_errors))
+    print("Total Bit Errors: " + str(total_bit_errors))"""
     print("Frame Error Rate: " + str(total_frame_errors/total_trials))
     print("Bit Error Rate: " + str(total_bit_errors / (total_trials * keyword.size)))
+
+    FER_BER = [total_frame_errors/total_trials, total_bit_errors / (total_trials * keyword.size)]
+    return (FER_BER)
