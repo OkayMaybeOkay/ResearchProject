@@ -1,4 +1,5 @@
 from Projects.TextfileHMatrixCreator import return_h_matrix, return_0_list
+from Projects.BitCreationCorruption import bf_corrupter_return_list
 import numpy as np
 
 """
@@ -25,7 +26,7 @@ def bit_flip_decode(input_list):
     no_2_repetition_of_opinions = None
 
     "Max iterations"
-    max_iterations = 1000
+    max_iterations = 100
 
     "The E Matrix"
     e_matrix = np.full(
@@ -91,11 +92,37 @@ def bit_flip_decode(input_list):
         "Now we do this until there's no 1's"
         if 1 not in e_matrix:
             #print("Here's the Code Word: " + str(m_sub_i))
-            #print("It took " + str(iterations + 1) + " iterations")
+            print("It took " + str(iterations + 1) + " iterations")
             return m_sub_i
+
 
         "If there is still unknowns in the keyword and the max iterations have been reached, we say it reached the max"
         if (iterations + 1) == max_iterations:
-            #print("Max iterations have been reached: " + str(max_iterations))
+            print("Max iterations have been reached: " + str(max_iterations))
             #print("Decoding failed")
-            return "Decoding failed (" + str(max_iterations) + " Iterations)"
+            return m_sub_i
+
+#476 zeroes
+original_list = return_0_list(476)
+original_array = np.array(original_list)
+corrupted_list = bf_corrupter_return_list(original_array, 0.1)
+print("Here is the original code: \n" + str(original_list) + "\n")
+print("Here is the corrupted code: \n" + str(corrupted_list) + "\n")
+decoded_array = bit_flip_decode(corrupted_list)
+decoded_list = decoded_array.tolist()
+
+
+"""
+Number of Iterations to observed Time:
+
+Probability: 0.03 (sometimes completes in 5 iterations, sometimes takes max iterations)
+
+100: 2 seconds (1 second)
+1000: 20 seconds (16 seconds)
+10000: 200 seconds (2 minutes, 53 seconds)
+100000: 2000 seconds (1/2 Hour)
+1000000: 20000 seconds (5 1/2 Hours)
+
+
+"""
+print("Here is the attempted codeword: \n" + str(decoded_list) + "\n")
